@@ -1,11 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { LevelController } from './level.controller';
 import { LevelService } from './level.service';
 import { SubjectModule } from 'src/subject/subject.module';
 
 @Module({
+  imports: [forwardRef(() => SubjectModule)],
   controllers: [LevelController],
   providers: [LevelService],
-  imports: [SubjectModule],
+  exports:[LevelService]
 })
 export class LevelModule {}
